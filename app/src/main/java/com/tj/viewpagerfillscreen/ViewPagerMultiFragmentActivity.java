@@ -112,12 +112,12 @@ public class ViewPagerMultiFragmentActivity extends FragmentActivity {
 	}
 	
 	public static final String[] IMAGES = new String[] {
-		"http://imgt8.bdstatic.com/it/u=1,2294437144&fm=19&gp=0.jpg",
-		"http://imgt7.bdstatic.com/it/u=2,972689175&fm=19&gp=0.jpg",
-		"http://imgt9.bdstatic.com/it/u=2,972596945&fm=19&gp=0.jpg",
-		"http://imgt9.bdstatic.com/it/u=2,967767831&fm=19&gp=0.jpg",
-		"http://imgt6.bdstatic.com/it/u=2,967788223&fm=19&gp=0.jpg",
-		"http://imgt6.bdstatic.com/it/u=2,972593351&fm=19&gp=0.jpg",
-		"http://imgt6.bdstatic.com/it/u=2,967790111&fm=19&gp=0.jpg"
+		"http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1401/07/c1/30370260_1389081043639.jpg",
+		"http://pic.4j4j.cn/upload/pic/20130731/fbe6d5db20.jpg",
+		"http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1302/06/c0/18024627_1360123003180.jpg",
+		"http://www.bz55.com/uploads/allimg/150508/139-15050Q14430-50.jpg",
+		"http://image.tianjimedia.com/uploadImages/2014/218/39/4SY6Z13S428U.jpg",
+		"http://d.3987.com/xxqqs_150709/001.jpg",
+		"http://img.article.pchome.net/01/59/45/98/pic_lib/wm/GTR09.jpg"
 	};
 }
