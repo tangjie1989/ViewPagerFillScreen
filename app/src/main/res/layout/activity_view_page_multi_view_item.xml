@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/user_big_photo_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <com.tj.viewpagerfillscreen.widget.ProgressWheel
+        android:id="@+id/img_load_progress"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        ProgressWheel:barColor="#339BB9"
+        ProgressWheel:barWidth="10dp"
+        ProgressWheel:rimColor="#44000000"
+        ProgressWheel:rimWidth="10dp"
+        ProgressWheel:spinSpeed="3dp"
+        ProgressWheel:text=""
+        ProgressWheel:textColor1="#222222"
+        ProgressWheel:textSize1="14sp" />
+
+</RelativeLayout>
