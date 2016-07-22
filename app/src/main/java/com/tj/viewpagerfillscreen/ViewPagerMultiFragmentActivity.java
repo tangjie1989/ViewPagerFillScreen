@@ -31,7 +31,7 @@ public class ViewPagerMultiFragmentActivity extends FragmentActivity {
 	
 	private void initPhotoListViewPager() {
 
-		photoListPagerAdapter = new PhotoListPagerAdapter(getSupportFragmentManager());
+		PhotoListPagerAdapter photoListPagerAdapter = new PhotoListPagerAdapter(getSupportFragmentManager());
 		
 		photoListViewPager = (ViewPager) findViewById(R.id.view_pager);
 		photoListViewPager.setAdapter(photoListPagerAdapter);
@@ -76,17 +76,16 @@ public class ViewPagerMultiFragmentActivity extends FragmentActivity {
 
 	private LinearLayout pagerContainer;
 	private ViewPager photoListViewPager;
-	private PhotoListPagerAdapter photoListPagerAdapter;
-	
+
 	private class PhotoListPagerAdapter extends FragmentPagerAdapter {
 		
-		public PhotoListPagerAdapter(FragmentManager fm) {
+		private PhotoListPagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
 		
 		@Override
 		public Fragment getItem(int position) {
-			return new PageFragment(IMAGES[position]);
+			return PageFragment.newInstance(IMAGES[position]);
 		}
 
 		@Override
@@ -111,7 +110,7 @@ public class ViewPagerMultiFragmentActivity extends FragmentActivity {
 
 	}
 	
-	public static final String[] IMAGES = new String[] {
+	private static final String[] IMAGES = new String[] {
 		"http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1401/07/c1/30370260_1389081043639.jpg",
 		"http://pic.4j4j.cn/upload/pic/20130731/fbe6d5db20.jpg",
 		"http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1302/06/c0/18024627_1360123003180.jpg",

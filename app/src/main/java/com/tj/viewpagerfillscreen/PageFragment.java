@@ -21,83 +21,87 @@ import com.tj.viewpagerfillscreen.widget.ProgressWheel;
 @SuppressLint("ValidFragment")
 public class PageFragment extends Fragment {
 
-	private final String TAG = PageFragment.class.getSimpleName();
-	
-	private ImageView userBigPhotoImg;
-	private ProgressWheel progressWheel;
-	
-	String picUrl;
-	
-	public PageFragment(String url) {
-		this.picUrl = url;
-	}
-	
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
-	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		
-		RelativeLayout viewContainer = (RelativeLayout)inflater.inflate(R.layout.activity_view_page_multi_view_item,null);
-		userBigPhotoImg = (ImageView)viewContainer.findViewById(R.id.user_big_photo_img);
-		
-		progressWheel = (ProgressWheel)viewContainer.findViewById(R.id.img_load_progress);
-		return viewContainer;
-	}
-	
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		
-		ImageLoader.getInstance().displayImage(picUrl, userBigPhotoImg,
-				generateDisplayImageOptionsNoCatchDisk(),
-				new ImageLoadingListener() {
-					@Override
-					public void onLoadingStarted(String imageUri, View view) {
-					}
+    private ImageView mUserBigPhotoImg;
+    private ProgressWheel mProgressWheel;
 
-					@Override
-					public void onLoadingFailed(String imageUri, View view,
-							FailReason failReason) {
-					}
+    private static final String PIC_URL = "pic_url";
+    private String mPicUrl;
 
-					@Override
-					public void onLoadingComplete(String imageUri, View view,
-							Bitmap loadedImage) {
-						progressWheel.setVisibility(View.GONE);
-					}
+    private PageFragment() {}
 
-					@Override
-					public void onLoadingCancelled(String imageUri, View view) {
-					}
-				}, new ImageLoadingProgressListener() {
+    public static PageFragment newInstance(String picUrl){
+        PageFragment f = new PageFragment();
+        Bundle args = new Bundle();
+        args.putString(PIC_URL, picUrl);
+        f.setArguments(args);
+        return f;
+    }
 
-					@Override
-					public void onProgressUpdate(String imageUri, View view,
-							int current, int total) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPicUrl = getArguments().getString(PIC_URL);
+    }
 
-						int preProgress = 90;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-						int picLoadPro = (int) (current * 270.0 / total);
+        RelativeLayout viewContainer = (RelativeLayout) inflater.inflate(R.layout.activity_view_page_multi_view_item, null);
+        mUserBigPhotoImg = (ImageView) viewContainer.findViewById(R.id.user_big_photo_img);
 
-						progressWheel.setProgress(picLoadPro + preProgress);
-						progressWheel.setText((int) ((picLoadPro + preProgress) * 100.0 / 360.0) + "%");
+        mProgressWheel = (ProgressWheel) viewContainer.findViewById(R.id.img_load_progress);
+        return viewContainer;
+    }
 
-					}
-				});
-	}
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-	public static DisplayImageOptions generateDisplayImageOptionsNoCatchDisk() {
-		DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
-				.cacheInMemory(true).cacheOnDisk(true)
-				.considerExifParams(true)
-				.imageScaleType(ImageScaleType.EXACTLY)
-				.bitmapConfig(Bitmap.Config.ARGB_8888).build();
+        ImageLoader.getInstance().displayImage(mPicUrl, mUserBigPhotoImg,
+                generateDisplayImageOptionsNoCatchDisk(),
+                new ImageLoadingListener() {
+                    @Override
+                    public void onLoadingStarted(String imageUri, View view) {
+                    }
 
-		return displayImageOptions;
-	}
+                    @Override
+                    public void onLoadingFailed(String imageUri, View view,
+                                                FailReason failReason) {
+                    }
+
+                    @Override
+                    public void onLoadingComplete(String imageUri, View view,
+                                                  Bitmap loadedImage) {
+                        mProgressWheel.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onLoadingCancelled(String imageUri, View view) {
+                    }
+                }, new ImageLoadingProgressListener() {
+
+                    @Override
+                    public void onProgressUpdate(String imageUri, View view,
+                                                 int current, int total) {
+
+                        int preProgress = 90;
+
+                        int picLoadPro = (int) (current * 270.0 / total);
+
+                        mProgressWheel.setProgress(picLoadPro + preProgress);
+                        mProgressWheel.setText((int) ((picLoadPro + preProgress) * 100.0 / 360.0) + "%");
+
+                    }
+                });
+    }
+
+    private static DisplayImageOptions generateDisplayImageOptionsNoCatchDisk() {
+        return new DisplayImageOptions.Builder()
+                .cacheInMemory(true).cacheOnDisk(true)
+                .considerExifParams(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .bitmapConfig(Bitmap.Config.ARGB_8888).build();
+    }
 
 }
