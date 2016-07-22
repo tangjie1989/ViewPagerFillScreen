@@ -32,3 +32,11 @@ build/
 
 # Private
 signing.properties
+
+/captures
+/.idea/*
+*.iml
+*.hprof
+*.class
+/buildSrc/.gradle
+/buildSrc/build
